@@ -9,4 +9,5 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 router.post("/", upload.single("file"), resultsController.importData);
 router.get("/:sbd", resultsController.findResultBySBD);
+router.get("/report/:topic", resultsController.reportResults);
 export default router;

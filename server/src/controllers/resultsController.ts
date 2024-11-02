@@ -48,6 +48,19 @@ class ResultsController {
       return next(new AppError(`Lỗi: ${error}`, 500));
     }
   }
+
+  async reportResults(req: Request, res: Response, next: NextFunction) {
+    try {
+      const topic = req.params.topic;
+      const results = await resultsService.reportRults(topic);
+      res.status(200).json({
+        status: 200,
+        results,
+      });
+    } catch (error) {
+      return next(new AppError(`Lỗi: ${error}`, 500));
+    }
+  }
 }
 
 export default new ResultsController();

@@ -32,6 +32,17 @@ class ResultsService {
     const result = Result.findOne({ sbd: sbd });
     return result;
   }
+
+  async reportRults(topic: string): Promise<any> {
+    const Gioi = await Result.countDocuments({ [topic]: { $gte: 8 } });
+    const Kha = await Result.countDocuments({ [topic]: { $lt: 8, $gte: 6 } });
+    const TrungBinh = await Result.countDocuments({
+      [topic]: { $lt: 6, $gte: 4 },
+    });
+    const Yeu = await Result.countDocuments({ [topic]: { $lt: 4 } });
+
+    return { Gioi, Kha, TrungBinh, Yeu };
+  }
 }
 
 export default new ResultsService();
