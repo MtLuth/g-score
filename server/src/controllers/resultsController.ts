@@ -52,7 +52,22 @@ class ResultsController {
   async reportResults(req: Request, res: Response, next: NextFunction) {
     try {
       const topic = req.params.topic;
-      const results = await resultsService.reportRults(topic);
+      const validTopic: string[] = [
+        "toan",
+        "ngu-van",
+        "ngoai-ngu",
+        "ly",
+        "hoa",
+        "sinh-hoc",
+        "gdcd",
+        "lich-su",
+        "dia-ly",
+      ];
+      if (!validTopic.includes(topic)) {
+        return next(new AppError("Đường dẫn không tồn tại!", 404));
+      }
+      const t = topic.replace(/-/g, "_");
+      const results = await resultsService.reportRults(t);
       res.status(200).json({
         status: 200,
         results,
