@@ -1,13 +1,13 @@
 import { error } from "console";
 import csvParser from "csv-parser";
 import { Readable } from "stream";
-import { IExamResult } from "~/models/result.js";
-import resultsRepository from "~/repositories/resultsRepository.js";
+import Result, { IExamResult } from "~/models/result.js";
+import AppError from "~/utils/appError.js";
 
 class ResultsService {
   insertMany: any;
-  async parseCSV(file: Buffer): Promise<any> {
-    const results: any[] = [];
+  async parseCSV(file: Buffer): Promise<IExamResult[]> {
+    const results: IExamResult[] = [];
 
     const steam = Readable.from(file.toString());
 
@@ -21,7 +21,16 @@ class ResultsService {
   }
 
   async saveResults(results: IExamResult[]): Promise<void> {
-    await resultsRepository.saveData(results);
+    await Result.insertMany(results);
+  }
+
+  async saveResult(result: IExamResult): Promise<void> {
+    await Result.create(result);
+  }
+
+  async findResultOfStudent(sbd: string): Promise<any> {
+    const result = Result.findOne({ sbd: sbd });
+    return result;
   }
 }
 

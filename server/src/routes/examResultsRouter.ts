@@ -8,4 +8,5 @@ const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
 router.post("/", upload.single("file"), resultsController.importData);
+router.get("/:sbd", resultsController.findResultBySBD);
 export default router;

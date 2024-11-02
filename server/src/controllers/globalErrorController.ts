@@ -10,13 +10,13 @@ const globalErrorHandler = (
 ) => {
   if (err instanceof AppError) {
     err.statusCode = err.statusCode || 500;
-    res.json({
+    res.status(err.statusCode).json({
       status: err.status,
       message: err.message,
     });
   }
   if (err instanceof MulterError) {
-    res.json({
+    res.status(500).json({
       status: 500,
       message: err.message,
     });

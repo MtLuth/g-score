@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npx nodemon",
     "build": "rimraf ./dist && tsc && tsc-alias",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "seed": "tsx ./src/seeders/examResultSeeders.ts"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.2"
   }
 }
