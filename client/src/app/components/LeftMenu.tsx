@@ -1,17 +1,39 @@
 import { Box, List, ListItem, ListItemText } from "@mui/material";
 import Link from "next/link";
+import HomeIcon from "@mui/icons-material/Home";
+import SearchIcon from "@mui/icons-material/Search";
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { ImportExport } from "@mui/icons-material";
 
 type MenuItem = {
   key: string;
   text: string;
   href: string;
+  icon: React.ReactNode;
 };
 
 const menu: MenuItem[] = [
-  { key: "dashboard", text: "Dash Board", href: "/" },
-  { key: "search", text: "Search Score", href: "/search" },
-  { key: "report", text: "Report", href: "/report" },
-  { key: "settings", text: "Settings", href: "/settings" },
+  { key: "home", text: "Home", href: "/", icon: <HomeIcon /> },
+  {
+    key: "search",
+    text: "Search Score",
+    href: "/search",
+    icon: <SearchIcon />,
+  },
+  { key: "report", text: "Report", href: "/report", icon: <AssessmentIcon /> },
+  {
+    key: "settings",
+    text: "Settings",
+    href: "/settings",
+    icon: <SettingsIcon />,
+  },
+  {
+    key: "import",
+    text: "Import",
+    href: "/import",
+    icon: <ImportExport />,
+  },
 ];
 
 export default function LeftMenu() {
@@ -20,7 +42,7 @@ export default function LeftMenu() {
       <List>
         <ListItem>
           <ListItemText
-            className=" text-white text-center"
+            className="text-white text-center"
             sx={{ fontSize: "1.5rem" }}
           >
             Menu
@@ -31,12 +53,13 @@ export default function LeftMenu() {
             key={item.key}
             component={Link}
             href={item.href}
-            className=" text-white pl-5 hover:bg-neutral-800"
+            className="text-white pl-5 hover:bg-neutral-800"
             sx={{
               fontFamily: "Rubik",
             }}
           >
-            <ListItemText primary={item.text} />
+            {item.icon}
+            <ListItemText primary={item.text} sx={{ marginLeft: 1 }} />{" "}
           </ListItem>
         ))}
       </List>
