@@ -2,6 +2,19 @@ import { NextFunction, Request, Response } from "express";
 import { MulterError } from "multer";
 import AppError from "~/utils/appError.js";
 
+const mongoErrorMessage = (errorMessage: string): string => {
+  const duplicateKeyPattern =
+    /E11000 duplicate key error collection: .* index: .* dup key: { (.*) }/;
+  const match = errorMessage.match(duplicateKeyPattern);
+
+  if (match) {
+    const duplicateKey = match[1];
+    return `Lỗi: Sinh viên có ${duplicateKey} đã tồn tại!.`;
+  }
+
+  return "Lỗi không xác định từ cơ sở dữ liệu.";
+};
+
 const globalErrorHandler = (
   err: AppError | MulterError,
   req: Request,
@@ -10,15 +23,22 @@ const globalErrorHandler = (
 ) => {
   if (err instanceof AppError) {
     err.statusCode = err.statusCode || 500;
+    if (err.message.includes("MongoServerError")) {
+      err.message = mongoErrorMessage(err.message);
+    }
     res.status(err.statusCode).json({
       status: err.status,
       message: err.message,
     });
-  }
-  if (err instanceof MulterError) {
+  } else if (err instanceof MulterError) {
     res.status(500).json({
       status: 500,
       message: err.message,
+    });
+  } else {
+    res.status(500).json({
+      status: 500,
+      message: "Đã xảy ra lỗi không xác định.",
     });
   }
 };

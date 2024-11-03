@@ -99,14 +99,13 @@ class ResultsService {
         },
       },
       {
-        $sort: { totalScore: -1 }, // Sort by totalScore in descending order
+        $sort: { totalScore: -1 },
       },
       {
-        $limit: 10, // Limit to top 10 students
+        $limit: 10,
       },
     ]);
 
-    // Tính tổng điểm cho mỗi học sinh
     const resultWithTotalScore = topStudents.map((student) => {
       const totalScore =
         (student.toan || 0) + (student.vat_li || 0) + (student.hoa_hoc || 0);

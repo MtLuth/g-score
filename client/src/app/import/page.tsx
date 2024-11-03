@@ -9,15 +9,20 @@ import {
 import GScoresCard from "../components/GScoresCard";
 import { useState } from "react";
 
+type ResponseData = {
+  status: number;
+  message: string;
+};
+
 export default function ImportFileCard() {
   const [fileName, setFileName] = useState("");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
-  const [openSnackbar, setOpenSnackbar] = useState(false); // State for Snackbar
-  const [snackbarMessage, setSnackbarMessage] = useState(""); // Message for Snackbar
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState<"success" | "error">(
     "success"
-  ); // Severity for Snackbar
+  );
 
   const handleFileImport = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -33,7 +38,7 @@ export default function ImportFileCard() {
     const file = fileInput.files?.[0];
 
     if (!file) {
-      setSnackbarMessage("Please select a file first.");
+      setSnackbarMessage("File đang để trống!");
       setSnackbarSeverity("error");
       setOpenSnackbar(true);
       return;
@@ -43,21 +48,20 @@ export default function ImportFileCard() {
     formData.append("file", file);
 
     setIsUploading(true);
-    setUploadProgress(0); // Reset progress to 0 before upload
+    setUploadProgress(0);
 
-    // Fetch request to upload file
     const response = await fetch("http://localhost:8080/api/v1/exam-results", {
       method: "POST",
       body: formData,
     });
 
+    const data: ResponseData = await response.json();
+
     if (response.ok) {
-      console.log(response.json());
-      setSnackbarMessage("File uploaded successfully!");
+      setSnackbarMessage(data.message);
       setSnackbarSeverity("success");
     } else {
-      console.log(response.json());
-      setSnackbarMessage("Error uploading file.");
+      setSnackbarMessage(`Error: ${data.message}`);
       setSnackbarSeverity("error");
     }
 
