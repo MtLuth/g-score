@@ -1,14 +1,14 @@
-import csvParser from "csv-parser";
-import dotenv from "dotenv";
-import fs from "fs";
 import mongoose from "mongoose";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 import Result from "~/models/result.js";
+import fs from "fs";
+import csvParser from "csv-parser";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: `${__dirname}/../../config.env` });
-const DB = process.env.DATABASE;
+const DB = "mongodb+srv://secureauth:admin@cluster0.ehjwf.mongodb.net/GScore";
 const parseCSV = (filePath) => {
     return new Promise((resolve, reject) => {
         const results = [];
