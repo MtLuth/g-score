@@ -17,3 +17,8 @@ body {
   display: grid;
   grid-template-columns: auto 1fr;
 }
+
+.css-nkt60q {
+  color: #fff !important;
+  font-weight: 600 !important;
+}

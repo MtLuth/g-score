@@ -1,4 +1,7 @@
+"use client";
+import { useEffect, useState } from "react";
 import {
+  CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -20,11 +23,31 @@ interface ResultsReport {
   [subject: string]: SubjectResults;
 }
 
-export default async function ReportPage() {
-  const res = await fetch("http://localhost:8080/api/v1/exam-results/report");
-  const data = await res.json();
+export default function ReportPage() {
+  const [results, setResults] = useState<ResultsReport | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const results: ResultsReport = data.results;
+  useEffect(() => {
+    const fetchResults = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:8080/api/v1/exam-results/report`
+        );
+
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        setResults(data.results);
+      } catch (error) {
+        console.log(error);
+        setError("Failed to fetch data");
+      }
+    };
+
+    fetchResults();
+  }, []);
 
   const subjectRow: { [key: string]: string } = {
     toan: "Toán",
@@ -37,6 +60,19 @@ export default async function ReportPage() {
     dia_li: "Địa Lý",
     gdcd: "GDCD",
   };
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!results) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <CircularProgress />;
+      </div>
+    );
+  }
+
   return (
     <>
       <GScoresCard
