@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f3f4f6;
+  font-family: "Rubik", sans-serif;
+}
+
+.grid-template-original {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.grid-body-template {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}

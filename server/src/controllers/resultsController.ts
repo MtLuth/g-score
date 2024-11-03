@@ -51,23 +51,19 @@ class ResultsController {
 
   async reportResults(req: Request, res: Response, next: NextFunction) {
     try {
-      const topic = req.params.topic;
-      const validTopic: string[] = [
-        "toan",
-        "ngu-van",
-        "ngoai-ngu",
-        "ly",
-        "hoa",
-        "sinh-hoc",
-        "gdcd",
-        "lich-su",
-        "dia-ly",
-      ];
-      if (!validTopic.includes(topic)) {
-        return next(new AppError("Đường dẫn không tồn tại!", 404));
-      }
-      const t = topic.replace(/-/g, "_");
-      const results = await resultsService.reportRults(t);
+      const results = await resultsService.reportResults();
+      res.status(200).json({
+        status: 200,
+        results,
+      });
+    } catch (error) {
+      return next(new AppError(`Lỗi: ${error}`, 500));
+    }
+  }
+
+  async topGradeAStudents(req: Request, res: Response, next: NextFunction) {
+    try {
+      const results = await resultsService.getTopAStudents();
       res.status(200).json({
         status: 200,
         results,
