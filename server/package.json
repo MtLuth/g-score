@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npx nodemon",
-    "build": "rimraf ./dist && tsc && tsc-alias",
+    "build": "tsc",
     "start": "node dist/index.js",
     "seed": "tsx ./src/seeders/examResultSeeders.ts"
   },
