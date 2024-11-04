@@ -1,7 +1,7 @@
 import { error } from "console";
 import csvParser from "csv-parser";
 import { Readable } from "stream";
-import Result from "~/models/result.js";
+import Result from "./../models/result.js";
 class ResultsService {
     insertMany;
     async parseCSV(file) {

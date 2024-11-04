@@ -1,8 +1,8 @@
 import express from "express";
 import morgan from "morgan";
-import globalErrorHandler from "~/controllers/globalErrorController.js";
-import router from "~/routes/examResultsRouter.js";
-import AppError from "~/utils/appError.js";
+import globalErrorHandler from "./../controllers/globalErrorController.js";
+import router from "./../routes/examResultsRouter.js";
+import AppError from "./../utils/appError.js";
 import cors from "cors";
 const app = express();
 app.use(morgan("dev"));

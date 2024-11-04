@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npx nodemon",
-    "build": "tsc",
+    "build": "tsc --build",
     "start": "node dist/index.js",
     "seed": "tsx ./src/seeders/examResultSeeders.ts"
   },

@@ -1,9 +1,7 @@
 import { error } from "console";
 import csvParser from "csv-parser";
 import { Readable } from "stream";
-import Result, { IExamResult } from "~/models/result.js";
-import AppError from "~/utils/appError.js";
-
+import Result, { IExamResult } from "./../models/result.js";
 interface SubjectResults {
   Gioi: number;
   Kha: number;

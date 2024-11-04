@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { MulterError } from "multer";
-import AppError from "~/utils/appError.js";
+import AppError from "./../utils/appError.js";
 
 const mongoErrorMessage = (errorMessage: string): string => {
   const duplicateKeyPattern =

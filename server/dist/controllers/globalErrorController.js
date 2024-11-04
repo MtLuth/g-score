@@ -1,5 +1,5 @@
 import { MulterError } from "multer";
-import AppError from "~/utils/appError.js";
+import AppError from "./../utils/appError.js";
 const mongoErrorMessage = (errorMessage) => {
     const duplicateKeyPattern = /E11000 duplicate key error collection: .* index: .* dup key: { (.*) }/;
     const match = errorMessage.match(duplicateKeyPattern);

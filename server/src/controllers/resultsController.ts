@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { IExamResult } from "~/models/result.js";
-import resultsService from "~/services/resultsService.js";
-import AppError from "~/utils/appError.js";
+import { IExamResult } from "./../models/result.js";
+import resultsService from "./../services/resultsService.js";
+import AppError from "./../utils/appError.js";
 
 class ResultsController {
   async importData(

@@ -1,5 +1,5 @@
-import resultsService from "~/services/resultsService.js";
-import AppError from "~/utils/appError.js";
+import resultsService from "./../services/resultsService.js";
+import AppError from "./../utils/appError.js";
 class ResultsController {
     async importData(req, res, next) {
         try {

@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-import Result from "~/models/result.js";
 import fs from "fs";
 import csvParser from "csv-parser";
-import { IExamResult } from "~/models/result.js";
+import { IExamResult } from "./../models/result.js";
+import Result from "./../models/result.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
