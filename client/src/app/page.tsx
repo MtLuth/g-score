@@ -26,7 +26,7 @@ export default function Home() {
     const fetchTopStudents = async () => {
       try {
         const res = await fetch(
-          "http://localhost:8080/api/v1/exam-results/top-10-A"
+          "http://localhost:8081/api/v1/exam-results/top-10-A"
         );
         const data = await res.json();
         if (data && data.status === 200) {
