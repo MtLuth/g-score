@@ -33,7 +33,7 @@ cd g-score
 ## Chạy ứng dụng bằng docker
 Mở terminal ở thư mục gốc
 ```bash
-docker compose-up --build
+docker compose up --build
 ```
 
 ## Cách chạy ứng dụng bằng npm
