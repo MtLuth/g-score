@@ -43,6 +43,7 @@ docker compose up --build
 
  ```bash
  cd server
+npm i --legacy-peer-deps
 npm run dev
 ```
 
