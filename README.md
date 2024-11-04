@@ -6,6 +6,7 @@ G-Score là một ứng dụng web cho phép người dùng tra cứu điểm th
 
 - [Yêu cầu](#yêu-cầu)
 - [Cài đặt](#cài-đặt)
+- [Seed dữ liệu thô](#Seed-dữ-liệu)
 - [Chạy ứng dụng bằng Docker](#chạy-ứng-dụng-bằng-docker)
 - [Chạy ứng dụng bằng npm](#chạy-ứng-dụng-bằng-npm)
 - [Cách sử dụng](#cách-sử-dụng)
@@ -22,6 +23,12 @@ G-Score là một ứng dụng web cho phép người dùng tra cứu điểm th
 git clone https://github.com/MtLuth/g-score.git
 cd g-score
 ```
+## Seed dữ liệu
+1. Truy cập thư mục server/seeders
+2. Thêm dữ liệu thô cần seed với tệp csv. Sau đó đổi tên tệp thành data.csv (Lưu ý: Tệp phải đúng định dạng dữ liệu theo ảnh)
+![image](https://github.com/user-attachments/assets/6c563d8e-a06f-4c1b-85f4-5e3f597d75e3)
+
+
 
 ## Chạy ứng dụng bằng docker
 Mở terminal ở thư mục gốc
