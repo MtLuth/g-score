@@ -16,7 +16,9 @@ const DB = process.env.DATABASE
 
 if (DB) {
   mongoose
-    .connect(DB)
+    .connect(DB, {
+      connectTimeoutMS: 30000,
+    })
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.error("MongoDB connection error:", err));
 } else {
