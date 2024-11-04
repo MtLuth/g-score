@@ -50,7 +50,7 @@ export default function ImportFileCard() {
     setIsUploading(true);
     setUploadProgress(0);
 
-    const response = await fetch("http://localhost:8080/api/v1/exam-results", {
+    const response = await fetch("http://localhost:8081/api/v1/exam-results", {
       method: "POST",
       body: formData,
     });
