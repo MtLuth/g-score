@@ -2,12 +2,12 @@
 import {
   Box,
   Button,
-  Typography,
   LinearProgress,
   Snackbar,
+  Typography,
 } from "@mui/material";
-import GScoresCard from "../components/GScoresCard";
 import { useState } from "react";
+import GScoresCard from "../components/GScoresCard";
 
 type ResponseData = {
   status: number;

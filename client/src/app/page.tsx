@@ -30,7 +30,7 @@ export default function Home() {
         );
         const data = await res.json();
         if (data && data.status === 200) {
-          setTopStudents(data.results); // Extract results if status is 200
+          setTopStudents(data.results);
         }
       } catch (error) {
         console.error("Failed to fetch top students:", error);
