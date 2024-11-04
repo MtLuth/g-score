@@ -10,6 +10,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
+import { API_URL } from "./utils/apiUrl";
 
 interface Student {
   sbd: string;
@@ -25,12 +26,10 @@ export default function Home() {
   useEffect(() => {
     const fetchTopStudents = async () => {
       try {
-        const res = await fetch(
-          "http://localhost:8080/api/v1/exam-results/top-10-A"
-        );
+        const res = await fetch(`${API_URL}/exam-results/top-10-A`);
         const data = await res.json();
         if (data && data.status === 200) {
-          setTopStudents(data.results); // Extract results if status is 200
+          setTopStudents(data.results);
         }
       } catch (error) {
         console.error("Failed to fetch top students:", error);

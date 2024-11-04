@@ -2,12 +2,13 @@
 import {
   Box,
   Button,
-  Typography,
   LinearProgress,
   Snackbar,
+  Typography,
 } from "@mui/material";
-import GScoresCard from "../components/GScoresCard";
 import { useState } from "react";
+import GScoresCard from "../components/GScoresCard";
+import { API_URL } from "../utils/apiUrl";
 
 type ResponseData = {
   status: number;
@@ -50,7 +51,7 @@ export default function ImportFileCard() {
     setIsUploading(true);
     setUploadProgress(0);
 
-    const response = await fetch("http://localhost:8080/api/v1/exam-results", {
+    const response = await fetch(`${API_URL}/exam-results`, {
       method: "POST",
       body: formData,
     });

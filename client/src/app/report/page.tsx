@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@mui/material";
 import GScoresCard from "../components/GScoresCard";
+import { API_URL } from "../utils/apiUrl";
 
 interface SubjectResults {
   Gioi: number;
@@ -30,9 +31,7 @@ export default function ReportPage() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:8080/api/v1/exam-results/report`
-        );
+        const res = await fetch(`${API_URL}/exam-results/report`);
 
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);

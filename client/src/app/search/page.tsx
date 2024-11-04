@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import GScoresCard from "../components/GScoresCard";
 import { GScroreForm } from "../components/GScoreFormGroup";
+import { API_URL } from "../utils/apiUrl";
 
 type ExamResult = {
   sbd: string;
@@ -25,11 +26,7 @@ export default function ReportPage() {
 
   useEffect(() => {
     if (sbd) {
-      fetch(
-        `http://localhost:8080/api/v1/exam-results/search/${encodeURIComponent(
-          sbd
-        )}`
-      )
+      fetch(`${API_URL}/exam-results/search/${encodeURIComponent(sbd)}`)
         .then((response) => response.json())
         .then((result: { status: number; data: ExamResult }) => {
           if (result.status === 200) {
